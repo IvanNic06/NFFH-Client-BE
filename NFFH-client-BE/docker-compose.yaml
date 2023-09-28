@@ -1,0 +1,24 @@
+services:
+  api-getaway:
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        APP_NAME: nffh-client-BE
+    ports:
+      - "8081:8081"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: NFFH_ADMIN
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: Client_DB 
+  
+  mysql:
+    image: mysql:8.0.34
+    volumes:
+      - client-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: Client_DB
+
+  volumes:
+    client-mysql-data:
