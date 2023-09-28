@@ -1,0 +1,6 @@
+/home/giovdellap/Documents/NFFH-Client-BE/src/main/java/com/Microservice/Customer/CustomerApplication.java
+/home/giovdellap/Documents/NFFH-Client-BE/src/main/java/com/Microservice/Customer/requests/CreateCustomerInput.java
+/home/giovdellap/Documents/NFFH-Client-BE/src/main/java/com/Microservice/Customer/repositories/CustomerRepository.java
+/home/giovdellap/Documents/NFFH-Client-BE/src/main/java/com/Microservice/Customer/services/CustomerService.java
+/home/giovdellap/Documents/NFFH-Client-BE/src/main/java/com/Microservice/Customer/controllers/CustomerController.java
+/home/giovdellap/Documents/NFFH-Client-BE/src/main/java/com/Microservice/Customer/entities/Customer.java
