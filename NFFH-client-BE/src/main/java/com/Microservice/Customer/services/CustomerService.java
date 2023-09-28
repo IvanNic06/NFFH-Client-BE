@@ -1,11 +1,12 @@
-package com.tericcabrel.taskman.services;
+package com.Microservice.Customer.services;
 
-import com.tericcabrel.taskman.entities.Customer;
-import com.tericcabrel.taskman.repositories.CustomerRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+
+import com.Microservice.Customer.entities.Customer;
+import com.Microservice.Customer.repositories.CustomerRepository;
 
 @Service
 public class CustomerService {

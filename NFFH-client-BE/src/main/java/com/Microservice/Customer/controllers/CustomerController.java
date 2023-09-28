@@ -1,13 +1,13 @@
-package com.tericcabrel.taskman.controllers;
-
-import com.tericcabrel.taskman.entities.Customer;
-import com.tericcabrel.taskman.requests.CreateCustomerInput;
-import com.tericcabrel.taskman.services.CustomerService;
+package com.Microservice.Customer.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.Microservice.Customer.entities.Customer;
+import com.Microservice.Customer.requests.CreateCustomerInput;
+import com.Microservice.Customer.services.CustomerService;
 
 import java.util.List;
 import java.util.Optional;

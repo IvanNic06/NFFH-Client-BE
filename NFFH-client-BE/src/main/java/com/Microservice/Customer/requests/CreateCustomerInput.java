@@ -1,8 +1,8 @@
-package com.tericcabrel.taskman.requests;
-
-import com.tericcabrel.taskman.entities.Customer;
+package com.Microservice.Customer.requests;
 
 import java.util.Date;
+
+import com.Microservice.Customer.entities.Customer;
 
 public record CreateCustomerInput(String email, String password) {
     public Customer toTask() {

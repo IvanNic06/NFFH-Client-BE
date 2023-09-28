@@ -1,4 +1,4 @@
-package com.tericcabrel.taskman.entities;
+package com.Microservice.Customer.entities;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
