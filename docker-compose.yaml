@@ -1,4 +1,15 @@
 services:
+  mysqldb:
+    image: mysql:8.0.34
+    volumes:
+      - client-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: Client_DB
+      MYSQL_USER: NFFH_ADMIN
+      MYSQL_PASSWORD: root
+    ports:
+    - "3306:3306"
   client-be:
     build:
       dockerfile: ./Dockerfile
@@ -7,18 +18,13 @@ services:
     ports:
       - "8081:8081"
     environment:
-      MYSQL_HOST: mysql
+      MYSQL_HOST: mysqldb
       MYSQL_USER: NFFH_ADMIN
       MYSQL_PASSWORD: root
       MYSQL_DATABASE: Client_DB 
+    depends_on:
+      - mysqldb
   
-  mysql:
-    image: mysql:8.0.34
-    volumes:
-      - client-mysql-data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: Client_DB
 
 volumes:
   client-mysql-data:
