@@ -1,16 +1,31 @@
+version: '3.1'
+
 services:
+
   mysqldb:
     image: mysql:8.0.34
+    container_name: mysqldb   
     volumes:
       - client-mysql-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: Client_DB
-      MYSQL_USER: NFFH_ADMIN
-      MYSQL_PASSWORD: root
+
     ports:
     - "3306:3306"
-    
+
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin:latest
+      container_name: my-php-myadmin
+      ports:
+        - "8082:80"
+      restart: always
+      depends_on:
+        - mysqldb
+      environment:
+        PMA_HOST: mysqldb
+        PMA_USER: root
+        PMA_PASSWORD: root
 
   client-be:
     build:
@@ -20,10 +35,9 @@ services:
     ports:
       - "8081:8081"
     environment:
-      MYSQL_HOST: mysqldb
-      MYSQL_USER: NFFH_ADMIN
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: Client_DB 
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/Client_DB
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
     depends_on:
       - mysqldb
   

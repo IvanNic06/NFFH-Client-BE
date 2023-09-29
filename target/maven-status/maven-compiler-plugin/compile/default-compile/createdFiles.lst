@@ -1,6 +1,1 @@
-com/Microservice/Customer/CustomerApplication.class
-com/Microservice/Customer/entities/Customer.class
-com/Microservice/Customer/services/CustomerService.class
-com/Microservice/Customer/controllers/CustomerController.class
-com/Microservice/Customer/repositories/CustomerRepository.class
-com/Microservice/Customer/requests/CreateCustomerInput.class
+main/java/com/Microservice/Customer/services/ICustomerService.class
