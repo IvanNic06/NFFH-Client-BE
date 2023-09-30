@@ -12,7 +12,7 @@ services:
       MYSQL_DATABASE: Client_DB
 
     ports:
-    - "3306:3306"
+    - 3306:3306
 
   phpmyadmin:
       image: phpmyadmin/phpmyadmin:latest
@@ -26,6 +26,8 @@ services:
         PMA_HOST: mysqldb
         PMA_USER: root
         PMA_PASSWORD: root
+      networks:
+        - internal
 
   client-be:
     build:
@@ -33,14 +35,24 @@ services:
       args:
         APP_NAME: nffh-client-BE
     ports:
-      - "8081:8081"
+      - 8081:8081
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/Client_DB
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     depends_on:
       - mysqldb
-  
+    networks:
+      - gateway
+      - internal
+
+
+networks:
+  gateway:
+    external: true
+    name: nffh-gateway_client-be
+  internal:
+    external: false
 
 volumes:
   client-mysql-data:
