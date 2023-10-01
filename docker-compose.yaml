@@ -10,9 +10,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: Client_DB
-
-    ports:
-    - "3306:3306"
+    networks:
+        - internal
 
   phpmyadmin:
       image: phpmyadmin/phpmyadmin:latest
@@ -28,20 +27,27 @@ services:
         PMA_PASSWORD: root
 
   client-be:
+    container_name: client-be
     build:
       dockerfile: ./Dockerfile
       args:
         APP_NAME: nffh-client-BE
-    ports:
-      - "8081:8081"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/Client_DB
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     depends_on:
       - mysqldb
-  
+    networks:
+      - gateway
+      - internal
 
+networks:
+  gateway:
+    external: true
+    name: client-be
+  internal:
+    external: false
 volumes:
   client-mysql-data:
       

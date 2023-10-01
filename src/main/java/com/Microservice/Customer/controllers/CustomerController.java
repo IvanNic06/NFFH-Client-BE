@@ -33,7 +33,7 @@ public class CustomerController {
     public ResponseEntity<List<Customer>> allTasks() {
         List<Customer> tasks = taskService.findAll();
 
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+        return new ResponseEntity<>(tasks, HttpStatus.MULTI_STATUS);
     }
 
     @GetMapping("/customer/{id}")
