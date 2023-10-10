@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.Microservice.Customer.entities.Customer;
+import com.Microservice.Customer.model.SignupResponse;
 import com.Microservice.Customer.requests.CreateCustomerInput;
 import com.Microservice.Customer.services.CustomerService;
 
@@ -22,11 +23,12 @@ public class CustomerController {
         this.taskService = taskService;
     }
 
-    @PostMapping("/customer")
-    public ResponseEntity<Customer> createTask(@RequestBody CreateCustomerInput createTaskInput) {
-        Customer taskCreated = taskService.create(createTaskInput.toTask());
+    @PostMapping(path = "/signup", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<SignupResponse> createTask(@RequestBody CreateCustomerInput createTaskInput) {
+        
+        SignupResponse response = new SignupResponse(taskService.create(createTaskInput.toTask()));
 
-        return new ResponseEntity<>(taskCreated, HttpStatus.CREATED);
+        return new ResponseEntity<SignupResponse>(response, HttpStatus.OK);
     }
 
     @GetMapping("/customer")

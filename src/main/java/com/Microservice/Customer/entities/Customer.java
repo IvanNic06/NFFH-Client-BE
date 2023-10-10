@@ -16,7 +16,10 @@ public class Customer {
 
     @Column(name="email",unique = true, length = 200, nullable = false)
     private String Email;
-    
+
+    @Column(name = "name")
+    private String Name;
+
     @Column(name = "password")
     private String Password;
 
@@ -28,6 +31,10 @@ public class Customer {
         return Email;
     }
 
+    public String getName() {
+        return Name;
+    }
+
     public String getPassword() {
         return Password;
     }
@@ -37,8 +44,13 @@ public class Customer {
         return this;
     }
 
-    public Customer setEmail(String name) {
-        this.Email = name;
+    public Customer setEmail(String email) {
+        this.Email = email;
+        return this;
+    }
+
+    public Customer setName(String name) {
+        this.Name = name;
         return this;
     }
 
