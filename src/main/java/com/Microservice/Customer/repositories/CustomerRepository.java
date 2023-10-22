@@ -8,4 +8,6 @@ import com.Microservice.Customer.entities.Customer;
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
+    Customer findByemail(String email);
+
 }

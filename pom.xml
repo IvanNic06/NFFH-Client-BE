@@ -8,11 +8,11 @@
 		<version>2.7.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.tericcabrel</groupId>
-	<artifactId>taskman</artifactId>
+	<groupId>NFFH-Client-BE</groupId>
+	<artifactId>Client-BE</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>client-be</name>
-	<description>Demo project for creating a REST API with Spring Boot </description>
+	<name>Client-be</name>
+	<description>Client Microservice</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

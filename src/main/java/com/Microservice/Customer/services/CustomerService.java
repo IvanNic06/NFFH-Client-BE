@@ -39,6 +39,11 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
+    public Customer findByEmail(String email) {
+        return customerRepository.findByemail(email);
+    }
+
+    @Override
     public Customer update(Customer taskToUpdate) {
         return customerRepository.save(taskToUpdate);
     }

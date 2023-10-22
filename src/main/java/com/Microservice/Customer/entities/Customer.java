@@ -1,10 +1,6 @@
 package com.Microservice.Customer.entities;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
-import java.util.Date;
 
 @Table(name = "customers")
 @Entity
@@ -15,28 +11,28 @@ public class Customer {
     private Integer id;
 
     @Column(name="email",unique = true, length = 200, nullable = false)
-    private String Email;
+    private String email;
 
     @Column(name = "name")
-    private String Name;
+    private String name;
 
     @Column(name = "password")
-    private String Password;
+    private String password;
 
     public Integer getId() {
         return id;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public Customer setId(Integer id) {
@@ -45,17 +41,17 @@ public class Customer {
     }
 
     public Customer setEmail(String email) {
-        this.Email = email;
+        this.email = email;
         return this;
     }
 
     public Customer setName(String name) {
-        this.Name = name;
+        this.name = name;
         return this;
     }
 
     public Customer setPassword(String description) {
-        this.Password = description;
+        this.password = description;
         return this;
     }
 
@@ -63,8 +59,8 @@ public class Customer {
     public String toString() {
         return "Task{" +
                 "id=" + id +
-                ", email='" + Email + '\'' +
-                ", Password='" + Password + '\'' +
+                ", email='" + email + '\'' +
+                ", Password='" + password + '\'' +
                 '}';
     }
 }

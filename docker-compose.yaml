@@ -40,12 +40,16 @@ services:
       - mysqldb
     networks:
       - gateway
+      - auth
       - internal
 
 networks:
   gateway:
     external: true
-    name: client-be
+    name: g-client-be
+  auth:
+    external: true
+    name: a-client-be
   internal:
     external: false
 volumes:

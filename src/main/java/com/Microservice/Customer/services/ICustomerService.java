@@ -14,6 +14,8 @@ public interface ICustomerService {
 
     Optional<Customer> findById(int id);
 
+    Customer findByEmail(String email);
+
     Customer update(Customer taskToUpdate);
 
     void delete(int id);
