@@ -2,9 +2,9 @@ version: '3.1'
 
 services:
 
-  mysqldb:
+  mysql-client:
     image: mysql:8.0.34
-    container_name: mysqldb   
+    container_name: mysql-client   
     volumes:
       - client-mysql-data:/var/lib/mysql
     environment:
@@ -13,19 +13,6 @@ services:
     networks:
         - internal
 
-  phpmyadmin:
-      image: phpmyadmin/phpmyadmin:latest
-      container_name: my-php-myadmin
-      ports:
-        - "8082:80"
-      restart: always
-      depends_on:
-        - mysqldb
-      environment:
-        PMA_HOST: mysqldb
-        PMA_USER: root
-        PMA_PASSWORD: root
-
   client-be:
     container_name: client-be
     build:
@@ -33,11 +20,11 @@ services:
       args:
         APP_NAME: nffh-client-BE
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/Client_DB
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-client:3306/Client_DB
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     depends_on:
-      - mysqldb
+      - mysql-client
     networks:
       - gateway
       - auth
