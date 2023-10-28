@@ -86,11 +86,12 @@ public class CustomerController {
         LoginResponse res;
 
         if(customer != null){
-            res = new LoginResponse(true, customer.getPassword());
+            res = new LoginResponse(true, customer.getPassword(), String.valueOf(customer.getId()), customer.getName());
         }
 
         else{
-            res = new LoginResponse(false, null);
+            res = new LoginResponse(false,null,null,null);
+            return new ResponseEntity<LoginResponse>(res, HttpStatus.NOT_FOUND);
         }
         
         return new ResponseEntity<LoginResponse>(res, HttpStatus.OK);
