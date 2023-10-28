@@ -67,6 +67,7 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
 
+
     @PostMapping("/customer/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginInput email){
         
@@ -74,6 +75,5 @@ public class CustomerController {
         Customer customer = customerService.findByEmail(mail);
         LoginResponse response = new LoginResponse(customer.getPassword()); 
         return new ResponseEntity<LoginResponse>(response, HttpStatus.OK);
-
     }
 }
