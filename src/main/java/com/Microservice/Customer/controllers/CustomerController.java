@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.Microservice.Customer.entities.Customer;
+import com.Microservice.Customer.model.GetClientByIDResponse;
 import com.Microservice.Customer.model.LoginInput;
 import com.Microservice.Customer.model.LoginResponse;
 import com.Microservice.Customer.model.SignupResponse;
@@ -27,41 +29,44 @@ public class CustomerController {
     }
 
     @PostMapping(path = "/client", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<SignupResponse> createTask(@RequestBody CreateCustomerInput createTaskInput) {
+    public ResponseEntity<SignupResponse> createCustomer(@RequestBody CreateCustomerInput createTaskInput) {
         
         SignupResponse response = new SignupResponse(customerService.create(createTaskInput.toTask()));
         return new ResponseEntity<SignupResponse>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/client")
-    public ResponseEntity<List<Customer>> allTasks() {
+    @GetMapping("/clients")
+    public ResponseEntity<List<Customer>> allCustomer() {
         List<Customer> tasks = customerService.findAll();
         return new ResponseEntity<>(tasks, HttpStatus.MULTI_STATUS);
     }
 
     @GetMapping("/client/{id}")
-    public ResponseEntity<Customer> oneTask(
-        @PathVariable int id,
-        @RequestHeader("token") String token
+    public ResponseEntity<GetClientByIDResponse> oneCustomer(
+        @RequestHeader("token") String token,
+        @RequestBody int id
         ) {
 
         boolean error = false;
         VerifyHandler handler = new VerifyHandler(this.customerService);
         handler.verify(token);
 
+
         if(!handler.isSuccess())
             error = true;
         if((!error) || handler.getRole().equals("admin")) {
             Optional<Customer> optionalTask = customerService.findById(id);
             if (optionalTask.isPresent()) {
-            return new ResponseEntity<Customer>(optionalTask.get(), HttpStatus.OK);
+                Customer customer = optionalTask.get();
+                GetClientByIDResponse res = new GetClientByIDResponse(token, customer.getEmail(), customer.getPassword());
+                return new ResponseEntity<GetClientByIDResponse>(res, HttpStatus.OK);
             }
         }
-        return new ResponseEntity<Customer>(new Customer(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<GetClientByIDResponse>(new GetClientByIDResponse(), HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/client/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable int id) {
+    public ResponseEntity<Void> deleteCustomer(@PathVariable int id) {
         customerService.delete(id);
 
         return ResponseEntity.noContent().build();

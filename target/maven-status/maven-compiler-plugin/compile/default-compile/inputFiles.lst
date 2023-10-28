@@ -1,6 +1,7 @@
 /home/alessandro/Documenti/Dev/Laboratory/NFFH-Client-BE/src/main/java/com/Microservice/Customer/requests/CreateCustomerInput.java
 /home/alessandro/Documenti/Dev/Laboratory/NFFH-Client-BE/src/main/java/com/Microservice/Customer/CustomerApplication.java
 /home/alessandro/Documenti/Dev/Laboratory/NFFH-Client-BE/src/main/java/com/Microservice/Customer/services/ICustomerService.java
+/home/alessandro/Documenti/Dev/Laboratory/NFFH-Client-BE/src/main/java/com/Microservice/Customer/model/GetClientByIDResponse.java
 /home/alessandro/Documenti/Dev/Laboratory/NFFH-Client-BE/src/main/java/com/Microservice/Customer/verifyToken/VerifyHandler.java
 /home/alessandro/Documenti/Dev/Laboratory/NFFH-Client-BE/src/main/java/com/Microservice/Customer/services/CustomerService.java
 /home/alessandro/Documenti/Dev/Laboratory/NFFH-Client-BE/src/main/java/com/Microservice/Customer/model/LoginInput.java
