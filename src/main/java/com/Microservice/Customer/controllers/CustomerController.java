@@ -26,20 +26,20 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @PostMapping(path = "/customer", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/client", consumes = "application/json", produces = "application/json")
     public ResponseEntity<SignupResponse> createTask(@RequestBody CreateCustomerInput createTaskInput) {
         
         SignupResponse response = new SignupResponse(customerService.create(createTaskInput.toTask()));
         return new ResponseEntity<SignupResponse>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/customer")
+    @GetMapping("/client")
     public ResponseEntity<List<Customer>> allTasks() {
         List<Customer> tasks = customerService.findAll();
         return new ResponseEntity<>(tasks, HttpStatus.MULTI_STATUS);
     }
 
-    @GetMapping("/customer/{id}")
+    @GetMapping("/client/{id}")
     public ResponseEntity<Customer> oneTask(
         @PathVariable int id,
         @RequestHeader("token") String token
@@ -60,7 +60,7 @@ public class CustomerController {
         return new ResponseEntity<Customer>(new Customer(), HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/customer/{id}")
+    @DeleteMapping("/client/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable int id) {
         customerService.delete(id);
 
@@ -68,12 +68,23 @@ public class CustomerController {
     }
 
 
-    @PostMapping("/customer/login")
+    @PostMapping("/client/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginInput email){
         
         String mail = email.ToStringEmail();
+        
         Customer customer = customerService.findByEmail(mail);
-        LoginResponse response = new LoginResponse(customer.getPassword()); 
-        return new ResponseEntity<LoginResponse>(response, HttpStatus.OK);
+
+        LoginResponse res;
+
+        if(customer != null){
+            res = new LoginResponse(true, customer.getPassword());
+        }
+
+        else{
+            res = new LoginResponse(false, null);
+        }
+        
+        return new ResponseEntity<LoginResponse>(res, HttpStatus.OK);
     }
 }
