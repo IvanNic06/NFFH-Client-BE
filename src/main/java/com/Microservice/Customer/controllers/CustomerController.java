@@ -31,7 +31,10 @@ public class CustomerController {
     @PostMapping(path = "/client", consumes = "application/json", produces = "application/json")
     public ResponseEntity<SignupResponse> createCustomer(@RequestBody CreateCustomerInput createTaskInput) {
         
-        SignupResponse response = new SignupResponse(customerService.create(createTaskInput.toTask()));
+        Customer customer = customerService.create(createTaskInput.toTask());
+
+
+        SignupResponse response = new SignupResponse("true",String.valueOf(customer.getId()));
         return new ResponseEntity<SignupResponse>(response, HttpStatus.OK);
     }
 
